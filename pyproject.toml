@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bugcrowd-hunter"
+version = "2.0.0"
+description = "Automated recon and scanning across Bugcrowd and HackerOne bug bounty programs"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.1",
+    "requests>=2.31",
+    "rich>=13.0",
+]
+
+[project.scripts]
+bugcrowd-hunter = "bugcrowd_hunter.cli:main"
+bch = "bugcrowd_hunter.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bugcrowd_hunter*"]
