@@ -1,0 +1,799 @@
+{
+  "id": "f487691d-c051-43c4-9597-756ffeccf01c",
+  "engagementId": "c91c52c6-604d-47f8-baf5-f4edbbbe58b6",
+  "data": {
+    "brief": {
+      "id": "95ef2b37-a6d0-4f2f-8ffb-231c48a0a239",
+      "name": "Gearset: Managed Bug Bounty",
+      "tagline": "Industry-leading DevOps solutions for every Salesforce team",
+      "description": "\u003Cp\u003ENo technology is perfect and Gearset believes that working with skilled security researchers across the globe is crucial in identifying weaknesses in any technology. We are excited for you to participate as a security researcher to help us identify vulnerabilities in our web app. Good luck, and happy hunting!\u003C/p\u003E\n\n\u003Ch1\u003EGearset\u003C/h1\u003E\n\n\u003Cp\u003EFor this program, we're inviting researchers to test our Web application and API. Our primary goal is to ensure customer's data is protected and our application is free from security vulnerabilities. \u003C/p\u003E\n\n\u003Ch3\u003ERelease frequency\u003C/h3\u003E\n\n\u003Cp\u003EGearset regularly releases new code. Our staging environments release changes multiple times per hour, so we would encourage you to regularly visit us. Major functionality will be mentioned in the announcement section, but you can also check the in-app changelog, as well as our \u003Ca href=\"https://gearset.com/blog\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Eblog\u003C/a\u003E. \u003C/p\u003E\n\n\u003Ch4\u003EOut of scope testing:\u003C/h4\u003E\n\n\u003Cp\u003ETesting is only authorized on the targets listed as In-Scope. Any domain/property of Gearset not listed in the targets section is out of scope. This includes any/all subdomains not listed.  If you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as ‘not applicable’ and will not be eligible for monetary or points-based compensation.\u003C/p\u003E",
+      "industryTagId": "46b8dcc8-bbd9-4a60-80ab-ab088c2bc3e4",
+      "targetsOverview": "\u003Cp\u003E\u003Cem\u003ETesting is only authorized on the targets listed as In-Scope. Any domain/property of Gearset not listed in the targets section is out of scope. This includes any/all subdomains not listed above.  IF you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as ‘not applicable’ and will not be eligible for monetary or points-based compensation.\u003C/em\u003E\u003C/p\u003E\n\n\u003Ch2\u003ERatings/Rewards:\u003C/h2\u003E\n\n\u003Cp\u003EFor the initial prioritization/rating of findings, this program will use the Bugcrowd Vulnerability Rating Taxonomy. However, it is important to note that in some cases a vulnerability priority will be modified due to its likelihood or impact. In any instance where an issue is downgraded, a full, detailed explanation will be provided to the researcher - along with the opportunity to appeal, and make a case for a higher priority.\u003C/p\u003E\n\n\u003Chr\u003E\n\n\u003Ch2\u003ETarget Information:\u003C/h2\u003E\n\n\u003Chr\u003E\n\n\u003Ch2\u003EAccess:\u003C/h2\u003E\n\n\u003Cp\u003EPublic Internet\u003C/p\u003E\n\n\u003Ch3\u003EDocumentation:\u003C/h3\u003E\n\n\u003Cp\u003E\u003Ca href=\"https://docs.gearset.com/en/\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Ehttps://docs.gearset.com/en/\u003C/a\u003E\u003C/p\u003E\n\n\u003Cp\u003EWe recommend you to go through the following docs:\u003C/p\u003E\n\n\u003Cul\u003E\n\u003Cli\u003E\u003Ca href=\"https://docs.gearset.com/en/collections/97842-getting-started-with-gearset\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EGetting started with Gearset\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\"https://docs.gearset.com/en/articles/2288712-what-is-gearset\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EWhat is Gearset\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\"https://docs.gearset.com/en/articles/2288719-key-features-to-try-out\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EKey Features\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003E\u003Ca href=\"https://docs.gearset.com/en/collections/97763-feature-guides\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EFeature guides\u003C/a\u003E\u003C/li\u003E\n\u003C/ul\u003E\n\n\u003Ch3\u003ECredentials:\u003C/h3\u003E\n\n\u003Cp\u003ETo gain access to the application, please sign up for an account using your @bugcrowdninja.com email address. For more info regarding @bugcrowdninja email addresses, see \u003Ca href=\"https://researcherdocs.bugcrowd.com/v2.0/docs/your-bugcrowdninja-email-address\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Ehere\u003C/a\u003E. You may register for accounts \u003Ca href=\"https://staging.gearset.com/create-account\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Ehere\u003C/a\u003E.\u003Cbr\u003E\nYou will need a developer Salesforce account that can be created \u003Ca href=\"https://developer.salesforce.com/signup\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Ehere\u003C/a\u003E.\u003C/p\u003E\n\n\u003Chr\u003E\n\n\u003Ch2\u003EOut-of-Scope\u003C/h2\u003E\n\n\u003Cp\u003EResearchers should only use our staging environment. Our production environment is not to be used.\u003C/p\u003E\n\n\u003Cp\u003EPlease do not use:\u003C/p\u003E\n\n\u003Cul\u003E\n\u003Cli\u003EThird party domains including any Salesforce domains\u003C/li\u003E\n\u003Cli\u003EThird party chat widget (sales &amp; support)\u003C/li\u003E\n\u003C/ul\u003E\n\n\u003Cp\u003EOur marketing site (gearset.com) is also out of scope.\u003C/p\u003E\n\n\u003Chr\u003E\n\n\u003Ch2\u003ESafe Harbor:\u003C/h2\u003E\n\n\u003Cp\u003E\u003Cstrong\u003EWhen conducting vulnerability research according to this policy, we consider this research to be:\u003C/strong\u003E\u003C/p\u003E\n\n\u003Cul\u003E\n\u003Cli\u003EAuthorized in accordance with the Computer Fraud and Abuse Act (CFAA) (and/or similar state laws), and we will not initiate or support legal action against you for accidental, good faith violations of this policy;\u003C/li\u003E\n\u003Cli\u003EExempt from the Digital Millennium Copyright Act (DMCA), and we will not bring a claim against you for circumvention of technology controls;\u003C/li\u003E\n\u003Cli\u003EExempt from restrictions in our Terms &amp; Conditions that would interfere with conducting security research, and we waive those restrictions on a limited basis for work done under this policy; and\u003C/li\u003E\n\u003Cli\u003ELawful, helpful to the overall security of the Internet, and conducted in good faith.\u003C/li\u003E\n\u003Cli\u003EYou are expected, as always, to comply with all applicable laws.\u003C/li\u003E\n\u003C/ul\u003E\n\n\u003Cp\u003E\u003Cem\u003EIf at any time you have concerns or are uncertain whether your security research is consistent with this policy, please inquire via support@bugcrowd.com before going any further.\u003C/em\u003E\u003C/p\u003E",
+      "safeHarborStatus": {
+        "status": "full",
+        "label": "Safe harbor",
+        "description": "This engagement is fully committed to providing safe harbor for good-faith security research."
+      },
+      "collaborationEnabled": true,
+      "additionalInformation": ""
+    },
+    "scope": [
+      {
+        "id": "88b329fa-0a7b-478d-9c80-6e7dcd76b0cf",
+        "name": "Gearset Staging",
+        "targets": [
+          {
+            "id": "a28a0e9c-3050-43ba-972a-f35f5a7c2984",
+            "uri": "https://staging.gearset.com/",
+            "name": "staging.gearset.com",
+            "category": "website",
+            "ipAddress": null,
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "cd922be5-db33-46c9-be3d-6cea74bd8fb5",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": [
+              {
+                "id": "33a7c027-8a7e-4564-8330-cb149ab4352e",
+                "name": "TypeScript",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "45e28558-ada7-4f38-b087-fb0e6ac31e0d",
+                "name": "AWS",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "6155adbb-bc15-4203-8b79-bd7a589ae5b4",
+                "name": "Redux",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "70f8fc74-f147-45d5-8f56-9bff2f555bd7",
+                "name": ".NET",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "803518dc-5ae1-4e48-8de4-5b61b42a6bd0",
+                "name": "Amazon S3",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "95cf953e-85ee-42c2-9123-09d81bfe7ba9",
+                "name": "PostgreSQL",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "9dded18a-fb38-4faa-b2ac-82845ca03735",
+                "name": "ReactJS",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "9ffd297c-4781-4777-94cf-ef4e2ddda266",
+                "name": "C#",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              },
+              {
+                "id": "fbcf3656-e6af-403a-a14e-6ec830fb8668",
+                "name": "Javascript",
+                "targetId": "a28a0e9c-3050-43ba-972a-f35f5a7c2984"
+              }
+            ],
+            "recentChangeFlags": null
+          }
+        ],
+        "inScope": true,
+        "sortOrder": 0,
+        "description": null,
+        "rewardRange": {
+          "id": "4c72c154-5abe-400d-8e7a-10ccbe9f325e",
+          "p1MaxCents": 600000,
+          "p1MinCents": 500000,
+          "p2MaxCents": 400000,
+          "p2MinCents": 150000,
+          "p3MaxCents": 85000,
+          "p3MinCents": 60000,
+          "p4MaxCents": 25000,
+          "p4MinCents": 20000,
+          "p5MaxCents": null,
+          "p5MinCents": null,
+          "engagementMaxCents": null
+        },
+        "descriptionHtml": "\u003Ch3\u003ETech changes:\u003C/h3\u003E\n\n\u003Cul\u003E\n\u003Cli\u003E(Latest) We are in the process of introducing \u003Ca href=\"https://redux.js.org/\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003ERedux.js\u003C/a\u003E\u003C/li\u003E\n\u003Cli\u003EWe are also moving a lot of our JS to Typescript\u003C/li\u003E\n\u003Cli\u003ECurrently migrating from \u003Ca href=\"https://knockoutjs.com/\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EKnockout.js\u003C/a\u003E to \u003Ca href=\"https://reactjs.org/\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EReact\u003C/a\u003E\u003C/li\u003E\n\u003C/ul\u003E\n\n\u003Ch3\u003EFocus area:\u003C/h3\u003E\n\n\u003Cul\u003E\n\u003Cli\u003EData backups (\u003Ca href=\"https://staging.gearset.com/data-backup-jobs\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Epage\u003C/a\u003E / \u003Ca href=\"https://docs.gearset.com/en/collections/97763-feature-guides#data-backup\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Edocs\u003C/a\u003E)\u003C/li\u003E\n\u003Cli\u003EDeployment Pipelines (\u003Ca href=\"https://staging.gearset.com/deployment-pipelines\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Epage\u003C/a\u003E / \u003Ca href=\"https://docs.gearset.com/en/collections/3436372-gearset-pipelines\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Edocs\u003C/a\u003E)\u003C/li\u003E\n\u003Cli\u003EEnterprise security features (\u003Ca href=\"https://staging.gearset.com/account/team-security\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Epage\u003C/a\u003E / \u003Ca href=\"https://docs.gearset.com/en/collections/3778138-team-account-management\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Edocs\u003C/a\u003E / \u003Ca href=\"https://docs.gearset.com/en/articles/6722741-restricting-your-team-s-source-control-access\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Edocs 2\u003C/a\u003E)\u003C/li\u003E\n\u003Cli\u003ECustomer data (Customer on Team A should not be able to read/modify data belonging to another customer on Team B)\u003C/li\u003E\n\u003C/ul\u003E",
+        "rewardRangeData": {
+          "1": {
+            "min": 5000,
+            "max": 6000
+          },
+          "2": {
+            "min": 1500,
+            "max": 4000
+          },
+          "3": {
+            "min": 600,
+            "max": 850
+          },
+          "4": {
+            "min": 200,
+            "max": 250
+          },
+          "5": {
+            "min": null,
+            "max": null
+          }
+        },
+        "recentChangeFlags": null
+      },
+      {
+        "id": "848b777d-0a7b-449f-ad63-e7d07c76b0c0",
+        "name": "Gearset Public API",
+        "targets": [
+          {
+            "id": "99e84d23-1399-433b-a7da-7fb74827f41e",
+            "uri": "https://staging.gearset.com/",
+            "name": "staging-api.gearset.com",
+            "category": "api",
+            "ipAddress": null,
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "77e895f9-0348-4d68-af2b-d3dc1c6ed097",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": [
+              {
+                "id": "1f2fc0ed-8b79-47a2-a6dc-564a2d9d0828",
+                "name": "API Testing",
+                "targetId": "99e84d23-1399-433b-a7da-7fb74827f41e"
+              },
+              {
+                "id": "70f8fc74-f147-45d5-8f56-9bff2f555bd7",
+                "name": ".NET",
+                "targetId": "99e84d23-1399-433b-a7da-7fb74827f41e"
+              },
+              {
+                "id": "9ffd297c-4781-4777-94cf-ef4e2ddda266",
+                "name": "C#",
+                "targetId": "99e84d23-1399-433b-a7da-7fb74827f41e"
+              }
+            ],
+            "recentChangeFlags": null
+          }
+        ],
+        "inScope": true,
+        "sortOrder": 1,
+        "description": null,
+        "rewardRange": {
+          "id": "4c72c154-5abe-400d-8e7a-10ccbe9f325e",
+          "p1MaxCents": 600000,
+          "p1MinCents": 500000,
+          "p2MaxCents": 400000,
+          "p2MinCents": 150000,
+          "p3MaxCents": 85000,
+          "p3MinCents": 60000,
+          "p4MaxCents": 25000,
+          "p4MinCents": 20000,
+          "p5MaxCents": null,
+          "p5MinCents": null,
+          "engagementMaxCents": null
+        },
+        "descriptionHtml": "\u003Ch2\u003EGetting started\u003C/h2\u003E\n\n\u003Cp\u003EWe provide a getting started guide for our customers, which explains how to create access tokens and make your first request. This can be found \u003Ca href=\"https://docs.gearset.com/en/articles/6099550-getting-started-with-the-gearset-api\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Ehere\u003C/a\u003E. \u003C/p\u003E\n\n\u003Cp\u003EThe only difference to the above is that you should be using \u003Cstrong\u003Ehttps://staging-api.gearset.com\u003C/strong\u003E rather than https://staging.gearset.com to make API request, and you should be logging in our \u003Ca href=\"https://staging.gearset.com/configure\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003Etest instance\u003C/a\u003E.\u003C/p\u003E\n\n\u003Ch2\u003EDocs\u003C/h2\u003E\n\n\u003Cp\u003EFor more information, please view our \u003Ca href=\"https://staging-api.gearset.com/public/automation/docs/index.htmll\" rel=\"nofollow noreferrer\" target=\"_blank\"\u003EAPI docs\u003C/a\u003E.\u003Cbr\u003E\nThese contain curl commands which you can use to send requests to our API.\u003C/p\u003E",
+        "rewardRangeData": {
+          "1": {
+            "min": 5000,
+            "max": 6000
+          },
+          "2": {
+            "min": 1500,
+            "max": 4000
+          },
+          "3": {
+            "min": 600,
+            "max": 850
+          },
+          "4": {
+            "min": 200,
+            "max": 250
+          },
+          "5": {
+            "min": null,
+            "max": null
+          }
+        },
+        "recentChangeFlags": null
+      },
+      {
+        "id": "447acb12-f6e5-4594-ae9d-98b150f34f45",
+        "name": "HIPAA Gearset Staging",
+        "targets": [
+          {
+            "id": "887befe3-b926-48a5-a6bb-b80784f81edc",
+            "uri": "https://hipaa.staging.gearset.com/",
+            "name": "hipaa.staging.gearset.com",
+            "category": "website",
+            "ipAddress": "",
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "f2c6a664-f064-4c8a-bf2b-6c77f92c4ff0",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": [
+              {
+                "id": "33a7c027-8a7e-4564-8330-cb149ab4352e",
+                "name": "TypeScript",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "45e28558-ada7-4f38-b087-fb0e6ac31e0d",
+                "name": "AWS",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "6155adbb-bc15-4203-8b79-bd7a589ae5b4",
+                "name": "Redux",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "70f8fc74-f147-45d5-8f56-9bff2f555bd7",
+                "name": ".NET",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "803518dc-5ae1-4e48-8de4-5b61b42a6bd0",
+                "name": "Amazon S3",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "95cf953e-85ee-42c2-9123-09d81bfe7ba9",
+                "name": "PostgreSQL",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "9dded18a-fb38-4faa-b2ac-82845ca03735",
+                "name": "ReactJS",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "9ffd297c-4781-4777-94cf-ef4e2ddda266",
+                "name": "C#",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              },
+              {
+                "id": "fbcf3656-e6af-403a-a14e-6ec830fb8668",
+                "name": "Javascript",
+                "targetId": "887befe3-b926-48a5-a6bb-b80784f81edc"
+              }
+            ],
+            "recentChangeFlags": null
+          }
+        ],
+        "inScope": true,
+        "sortOrder": 2,
+        "description": null,
+        "rewardRange": {
+          "id": "4c72c154-5abe-400d-8e7a-10ccbe9f325e",
+          "p1MaxCents": 600000,
+          "p1MinCents": 500000,
+          "p2MaxCents": 400000,
+          "p2MinCents": 150000,
+          "p3MaxCents": 85000,
+          "p3MinCents": 60000,
+          "p4MaxCents": 25000,
+          "p4MinCents": 20000,
+          "p5MaxCents": null,
+          "p5MinCents": null,
+          "engagementMaxCents": null
+        },
+        "descriptionHtml": "\u003Ch3\u003ESummary:\u003C/h3\u003E\n\n\u003Cp\u003EThe same API as Gearset Staging.\u003Cbr\u003E\nCustomer accounts must be added manually by Gearset and researchers \u003Cstrong\u003Ewill not\u003C/strong\u003E be given accounts, so should not be able to access any meaningful data or make any changes on this system.\u003C/p\u003E",
+        "rewardRangeData": {
+          "1": {
+            "min": 5000,
+            "max": 6000
+          },
+          "2": {
+            "min": 1500,
+            "max": 4000
+          },
+          "3": {
+            "min": 600,
+            "max": 850
+          },
+          "4": {
+            "min": 200,
+            "max": 250
+          },
+          "5": {
+            "min": null,
+            "max": null
+          }
+        },
+        "recentChangeFlags": null
+      },
+      {
+        "id": "119ea8db-f34b-4fc2-b93d-98584ee9963a",
+        "name": "Out of scope targets",
+        "targets": [
+          {
+            "id": "88915a3d-22a0-401b-aeeb-77586fe449e6",
+            "uri": "",
+            "name": "api.gearset.com",
+            "category": "api",
+            "ipAddress": null,
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "ad0925a6-4652-47db-9269-5225fd23931c",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": null,
+            "recentChangeFlags": null
+          },
+          {
+            "id": "dbfabae8-7a7d-4c00-ad93-70adba25e377",
+            "uri": "",
+            "name": "app.gearset.com",
+            "category": "website",
+            "ipAddress": "",
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "8c697b57-2d63-4ed3-be08-3335a22dd988",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": null,
+            "recentChangeFlags": null
+          },
+          {
+            "id": "862971dd-51f3-4722-bc61-d8dfdb133504",
+            "uri": "",
+            "name": "us.app.gearset.com",
+            "category": "website",
+            "ipAddress": "",
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "809ff9cf-6c5f-4312-92de-88fed469b380",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": null,
+            "recentChangeFlags": null
+          },
+          {
+            "id": "2c4ccd29-d766-44f0-a330-95b47c4e412b",
+            "uri": "",
+            "name": "eu.app.gearset.com",
+            "category": "website",
+            "ipAddress": "",
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "98fa6a4d-b731-4806-9a31-2fb712ca8d03",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": null,
+            "recentChangeFlags": null
+          },
+          {
+            "id": "e1143a12-29af-44d6-b2dd-65ccaa3d7a82",
+            "uri": "",
+            "name": "ap.app.gearest.com",
+            "category": "website",
+            "ipAddress": "",
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "059fbb97-daed-45c7-87e2-202fa3eee4ba",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": null,
+            "recentChangeFlags": null
+          },
+          {
+            "id": "140dbabb-30a8-49d7-ba2b-0a8dcb1423b3",
+            "uri": "",
+            "name": "gearset.com",
+            "category": "website",
+            "ipAddress": "",
+            "description": null,
+            "engagementBriefTargetGroupTarget": {
+              "id": "750b4689-2869-4aa5-96d1-524ebabc617f",
+              "sortOrder": 0
+            },
+            "sortOrder": 0,
+            "tags": null,
+            "recentChangeFlags": null
+          }
+        ],
+        "inScope": false,
+        "sortOrder": 3,
+        "description": null,
+        "rewardRange": null,
+        "descriptionHtml": "\u003Cp\u003EResearchers should only use our staging environment. Our production environment is \u003Cstrong\u003Enot\u003C/strong\u003E to be used. \u003C/p\u003E\n\n\u003Cp\u003EAny domain/property of Gearset not listed in the targets section is out of scope (this includes our marketing website gearset.com). This includes any/all subdomains not listed above. If you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as &#39;not applicable&#39; and will not be eligible for monetary or points-based compensation.\u003C/p\u003E",
+        "rewardRangeData": {
+
+        },
+        "recentChangeFlags": null
+      }
+    ],
+    "resources": [],
+    "engagement": {
+      "id": "c91c52c6-604d-47f8-baf5-f4edbbbe58b6",
+      "code": "gearset-mbb",
+      "state": "in_progress",
+      "endsAt": null,
+      "bountyId": "15fdb3da-5047-4576-80d2-3bb9d5e8282f",
+      "startsAt": "2021-02-02T12:00:00Z"
+    },
+    "engagementConfiguration": {
+      "participation": "open",
+      "crowdSelectionStrategy": "none"
+    }
+  },
+  "industryName": "Technology",
+  "methodologyName": null,
+  "logoUrl": "https://logos.bugcrowdusercontent.com/logos/d645/d69d/e2c39c06/c937316c731a441b12b3e7f2fbcc096f_Gearset_mark_rgb.png",
+  "logoBackgroundColor": "#FFFFFF",
+  "displayDisclosureTerms": true,
+  "coordinatedDisclosure": true,
+  "collaborationEnabled": true,
+  "participation": "open",
+  "rewardAllocation": "pay_for_success",
+  "engagementTypeDetail": {
+    "iconVariant": "bug-bounty",
+    "productLabel": "Bug Bounty",
+    "timeboxed": false
+  },
+  "pausedReason": null,
+  "lastTransitionAt": "2021-02-02T12:00:00.000Z",
+  "cancellationReason": null,
+  "statusLabel": "In progress",
+  "routesPaths": {
+    "brief": "/engagements/gearset-mbb",
+    "changelogs": "/engagements/gearset-mbb/changelog",
+    "submissions": "/engagements/gearset-mbb/submissions",
+    "announcements": "/engagements/gearset-mbb/announcements",
+    "hallOfFame": "/engagements/gearset-mbb/hall_of_fames",
+    "crowdstream": "/engagements/gearset-mbb/crowdstream"
+  },
+  "announcementsCount": 6,
+  "knownIssuesEnabled": true,
+  "isDemo": false,
+  "serviceLevel": "Platform",
+  "submitReportUrl": "/engagements/gearset-mbb/submissions/new",
+  "methodologyUrl": null,
+  "progressPercentage": 0,
+  "badgeVariant": null,
+  "userBannedFromEngagement": false,
+  "isLoggedIn": true,
+  "loginUrl": "/user/sign_in",
+  "scopedSubmissionsUrl": "/submissions?engagement%5B%5D=gearset-mbb&sort%5B%5D=submitted-desc",
+  "isFollowing": false,
+  "credentialsUrl": null,
+  "toggleSubscriptionUrl": "/gearset-mbb/engagement_subscribers",
+  "engagementChangelogsUrl": "/engagements/gearset-mbb/changelog",
+  "publishedAt": "2025-09-15T16:52:55.486Z",
+  "engagementChangelogUrl": "/engagements/gearset-mbb/changelog/f487691d-c051-43c4-9597-756ffeccf01c",
+  "presentedChangelog": {
+    "id": "f487691d-c051-43c4-9597-756ffeccf01c",
+    "publishedAt": "2025-09-15T16:52:55.486Z",
+    "reviews": {
+      "name": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset: Managed Bug Bounty\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset: Managed Bug Bounty\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "details": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ENo technology is perfect and Gearset believes that working with skilled security researchers across the globe is crucial in identifying weaknesses in any technology. We are excited for you to participate as a security researcher to help us identify vulnerabilities in our web app. Good luck, and happy hunting!\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E# Gearset\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EFor this program, we&#39;re inviting researchers to test our Web application and API. Our primary goal is to ensure customer&#39;s data is protected and our application is free from security vulnerabilities. \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Release frequency\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset regularly releases new code. Our staging environments release changes multiple times per hour, so we would encourage you to regularly visit us. Major functionality will be mentioned in the announcement section, but you can also check the in-app changelog, as well as our [blog](https://gearset.com/blog). \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E#### Out of scope testing:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ETesting is only authorized on the targets listed as In-Scope. Any domain/property of Gearset not listed in the targets section is out of scope. This includes any/all subdomains not listed.  If you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as ‘not applicable’ and will not be eligible for monetary or points-based compensation.\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ENo technology is perfect and Gearset believes that working with skilled security researchers across the globe is crucial in identifying weaknesses in any technology. We are excited for you to participate as a security researcher to help us identify vulnerabilities in our web app. Good luck, and happy hunting!\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E# Gearset\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EFor this program, we&#39;re inviting researchers to test our Web application and API. Our primary goal is to ensure customer&#39;s data is protected and our application is free from security vulnerabilities. \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Release frequency\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset regularly releases new code. Our staging environments release changes multiple times per hour, so we would encourage you to regularly visit us. Major functionality will be mentioned in the announcement section, but you can also check the in-app changelog, as well as our [blog](https://gearset.com/blog). \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E#### Out of scope testing:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ETesting is only authorized on the targets listed as In-Scope. Any domain/property of Gearset not listed in the targets section is out of scope. This includes any/all subdomains not listed.  If you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as ‘not applicable’ and will not be eligible for monetary or points-based compensation.\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "scopeDetails": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E_Testing is only authorized on the targets listed as In-Scope. Any domain/property of Gearset not listed in the targets section is out of scope. This includes any/all subdomains not listed above.  IF you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as ‘not applicable’ and will not be eligible for monetary or points-based compensation._\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Ratings/Rewards:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EFor the initial prioritization/rating of findings, this program will use the Bugcrowd Vulnerability Rating Taxonomy. However, it is important to note that in some cases a vulnerability priority will be modified due to its likelihood or impact. In any instance where an issue is downgraded, a full, detailed explanation will be provided to the researcher - along with the opportunity to appeal, and make a case for a higher priority.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E---\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Target Information:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E---\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Access:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EPublic Internet\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Documentation:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E&lt;https://docs.gearset.com/en/&gt;\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EWe recommend you to go through the following docs:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [Getting started with Gearset](https://docs.gearset.com/en/collections/97842-getting-started-with-gearset)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [What is Gearset](https://docs.gearset.com/en/articles/2288712-what-is-gearset)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [Key Features](https://docs.gearset.com/en/articles/2288719-key-features-to-try-out)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [Feature guides](https://docs.gearset.com/en/collections/97763-feature-guides)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Credentials:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ETo gain access to the application, please sign up for an account using your @bugcrowdninja.com email address. For more info regarding @bugcrowdninja email addresses, see [here](https://researcherdocs.bugcrowd.com/v2.0/docs/your-bugcrowdninja-email-address). You may register for accounts [here](https://staging.gearset.com/create-account).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EYou will need a developer Salesforce account that can be created [here](https://developer.salesforce.com/signup).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E-----\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Out-of-Scope\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EResearchers should only use our staging environment. Our production environment is not to be used.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EPlease do not use:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Third party domains including any Salesforce domains\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Third party chat widget (sales &amp; support)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EOur marketing site (gearset.com) is also out of scope.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E------\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Safe Harbor:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E**When conducting vulnerability research according to this policy, we consider this research to be:**\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Authorized in accordance with the Computer Fraud and Abuse Act (CFAA) (and/or similar state laws), and we will not initiate or support legal action against you for accidental, good faith violations of this policy;\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Exempt from the Digital Millennium Copyright Act (DMCA), and we will not bring a claim against you for circumvention of technology controls;\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Exempt from restrictions in our Terms &amp; Conditions that would interfere with conducting security research, and we waive those restrictions on a limited basis for work done under this policy; and\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Lawful, helpful to the overall security of the Internet, and conducted in good faith.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- You are expected, as always, to comply with all applicable laws.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E_If at any time you have concerns or are uncertain whether your security research is consistent with this policy, please inquire via support@bugcrowd.com before going any further._\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E_Testing is only authorized on the targets listed as In-Scope. Any domain/property of Gearset not listed in the targets section is out of scope. This includes any/all subdomains not listed above.  IF you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as ‘not applicable’ and will not be eligible for monetary or points-based compensation._\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Ratings/Rewards:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EFor the initial prioritization/rating of findings, this program will use the Bugcrowd Vulnerability Rating Taxonomy. However, it is important to note that in some cases a vulnerability priority will be modified due to its likelihood or impact. In any instance where an issue is downgraded, a full, detailed explanation will be provided to the researcher - along with the opportunity to appeal, and make a case for a higher priority.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E---\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Target Information:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E---\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Access:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EPublic Internet\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Documentation:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E&lt;https://docs.gearset.com/en/&gt;\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EWe recommend you to go through the following docs:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [Getting started with Gearset](https://docs.gearset.com/en/collections/97842-getting-started-with-gearset)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [What is Gearset](https://docs.gearset.com/en/articles/2288712-what-is-gearset)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [Key Features](https://docs.gearset.com/en/articles/2288719-key-features-to-try-out)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- [Feature guides](https://docs.gearset.com/en/collections/97763-feature-guides)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Credentials:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ETo gain access to the application, please sign up for an account using your @bugcrowdninja.com email address. For more info regarding @bugcrowdninja email addresses, see [here](https://researcherdocs.bugcrowd.com/v2.0/docs/your-bugcrowdninja-email-address). You may register for accounts [here](https://staging.gearset.com/create-account).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EYou will need a developer Salesforce account that can be created [here](https://developer.salesforce.com/signup).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E-----\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Out-of-Scope\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EResearchers should only use our staging environment. Our production environment is not to be used.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EPlease do not use:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Third party domains including any Salesforce domains\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Third party chat widget (sales &amp; support)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EOur marketing site (gearset.com) is also out of scope.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E------\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Safe Harbor:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E**When conducting vulnerability research according to this policy, we consider this research to be:**\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Authorized in accordance with the Computer Fraud and Abuse Act (CFAA) (and/or similar state laws), and we will not initiate or support legal action against you for accidental, good faith violations of this policy;\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Exempt from the Digital Millennium Copyright Act (DMCA), and we will not bring a claim against you for circumvention of technology controls;\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Exempt from restrictions in our Terms &amp; Conditions that would interfere with conducting security research, and we waive those restrictions on a limited basis for work done under this policy; and\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Lawful, helpful to the overall security of the Internet, and conducted in good faith.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- You are expected, as always, to comply with all applicable laws.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E_If at any time you have concerns or are uncertain whether your security research is consistent with this policy, please inquire via support@bugcrowd.com before going any further._\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "additionalInformation": null,
+      "status": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ein_progress\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ein_progress\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "startsAt": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E2021-02-02 12:00:00 UTC\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E2021-02-02 12:00:00 UTC\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "endsAt": null,
+      "tagline": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EIndustry-leading DevOps solutions for every Salesforce team\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EIndustry-leading DevOps solutions for every Salesforce team\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "safeHarborStatus": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Efull\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Efull\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "collaborationEnabled": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ECollaboration\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ECollaboration\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "industryTagId": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ETechnology\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ETechnology\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "resources": {
+        "allResources": [],
+        "previousResources": [],
+        "currentResources": []
+      },
+      "inScope": [
+        {
+          "title": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset Staging\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset Staging\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "description": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Tech changes:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- (Latest) We are in the process of introducing [Redux.js](https://redux.js.org/)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- We are also moving a lot of our JS to Typescript\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Currently migrating from [Knockout.js](https://knockoutjs.com/) to [React](https://reactjs.org/)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Focus area:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Data backups ([page](https://staging.gearset.com/data-backup-jobs) / [docs](https://docs.gearset.com/en/collections/97763-feature-guides#data-backup))\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Deployment Pipelines ([page](https://staging.gearset.com/deployment-pipelines) / [docs](https://docs.gearset.com/en/collections/3436372-gearset-pipelines))\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Enterprise security features ([page](https://staging.gearset.com/account/team-security) / [docs](https://docs.gearset.com/en/collections/3778138-team-account-management) / [docs 2](https://docs.gearset.com/en/articles/6722741-restricting-your-team-s-source-control-access))\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Customer data (Customer on Team A should not be able to read/modify data belonging to another customer on Team B)\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Tech changes:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- (Latest) We are in the process of introducing [Redux.js](https://redux.js.org/)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- We are also moving a lot of our JS to Typescript\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Currently migrating from [Knockout.js](https://knockoutjs.com/) to [React](https://reactjs.org/)\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Focus area:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Data backups ([page](https://staging.gearset.com/data-backup-jobs) / [docs](https://docs.gearset.com/en/collections/97763-feature-guides#data-backup))\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Deployment Pipelines ([page](https://staging.gearset.com/deployment-pipelines) / [docs](https://docs.gearset.com/en/collections/3436372-gearset-pipelines))\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Enterprise security features ([page](https://staging.gearset.com/account/team-security) / [docs](https://docs.gearset.com/en/collections/3778138-team-account-management) / [docs 2](https://docs.gearset.com/en/articles/6722741-restricting-your-team-s-source-control-access))\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E- Customer data (Customer on Team A should not be able to read/modify data belonging to another customer on Team B)\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "targets": [
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Estaging.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Estaging.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            }
+          ],
+          "rewardRange": {
+            "rewards": [
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$5000 - $6000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$5000 - $6000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$1500 - $4000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$1500 - $4000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$600 - $850\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$600 - $850\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$200 - $250\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$200 - $250\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              }
+            ],
+            "programMax": {
+              "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+              "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+            }
+          }
+        },
+        {
+          "title": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset Public API\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EGearset Public API\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "description": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Getting started\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EWe provide a getting started guide for our customers, which explains how to create access tokens and make your first request. This can be found [here](https://docs.gearset.com/en/articles/6099550-getting-started-with-the-gearset-api). \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EThe only difference to the above is that you should be using **https://staging-api.gearset.com** rather than https://staging.gearset.com to make API request, and you should be logging in our [test instance](https://staging.gearset.com/configure).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Docs\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EFor more information, please view our [API docs](https://staging-api.gearset.com/public/automation/docs/index.htmll).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EThese contain curl commands which you can use to send requests to our API.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Getting started\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EWe provide a getting started guide for our customers, which explains how to create access tokens and make your first request. This can be found [here](https://docs.gearset.com/en/articles/6099550-getting-started-with-the-gearset-api). \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EThe only difference to the above is that you should be using **https://staging-api.gearset.com** rather than https://staging.gearset.com to make API request, and you should be logging in our [test instance](https://staging.gearset.com/configure).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E## Docs\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EFor more information, please view our [API docs](https://staging-api.gearset.com/public/automation/docs/index.htmll).\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EThese contain curl commands which you can use to send requests to our API.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "targets": [
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Estaging-api.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Estaging-api.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapi\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapi\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            }
+          ],
+          "rewardRange": {
+            "rewards": [
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$5000 - $6000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$5000 - $6000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$1500 - $4000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$1500 - $4000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$600 - $850\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$600 - $850\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$200 - $250\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$200 - $250\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              }
+            ],
+            "programMax": {
+              "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+              "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+            }
+          }
+        },
+        {
+          "title": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EHIPAA Gearset Staging\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EHIPAA Gearset Staging\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "description": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Summary:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EThe same API as Gearset Staging.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ECustomer accounts must be added manually by Gearset and researchers **will not** be given accounts, so should not be able to access any meaningful data or make any changes on this system.\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E### Summary:\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EThe same API as Gearset Staging.\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003ECustomer accounts must be added manually by Gearset and researchers **will not** be given accounts, so should not be able to access any meaningful data or make any changes on this system.\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "targets": [
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ehipaa.staging.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ehipaa.staging.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            }
+          ],
+          "rewardRange": {
+            "rewards": [
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$5000 - $6000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$5000 - $6000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$1500 - $4000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$1500 - $4000\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$600 - $850\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$600 - $850\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$200 - $250\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$200 - $250\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              }
+            ],
+            "programMax": {
+              "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+              "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E$0\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+            }
+          }
+        }
+      ],
+      "outOfScope": [
+        {
+          "title": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EOut of scope targets\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EOut of scope targets\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "description": {
+            "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EResearchers should only use our staging environment. Our production environment is **not** to be used. \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EAny domain/property of Gearset not listed in the targets section is out of scope (this includes our marketing website gearset.com). This includes any/all subdomains not listed above. If you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as &#39;not applicable&#39; and will not be eligible for monetary or points-based compensation.\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+            "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EResearchers should only use our staging environment. Our production environment is **not** to be used. \u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003E\u003C/span\u003E\u003C/li\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003EAny domain/property of Gearset not listed in the targets section is out of scope (this includes our marketing website gearset.com). This includes any/all subdomains not listed above. If you happen to identify a security vulnerability on a target that is not in-scope, but that demonstrably belongs to Gearset, it may be reported to this program, and is appreciated - but will ultimately be marked as &#39;not applicable&#39; and will not be eligible for monetary or points-based compensation.\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+          },
+          "targets": [
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapi.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapi.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapi\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapi\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            },
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapp.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eapp.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            },
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eus.app.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eus.app.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            },
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eeu.app.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eeu.app.gearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            },
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eap.app.gearest.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eap.app.gearest.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            },
+            {
+              "name": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Egearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Egearset.com\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "category": {
+                "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+                "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Ewebsite\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+              },
+              "ip_address": null
+            }
+          ],
+          "rewardRange": {
+            "rewards": [],
+            "programMax": {
+
+            }
+          }
+        }
+      ],
+      "participation": {
+        "previous": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eopen\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n",
+        "current": "\u003Cdiv class=\"diff\"\u003E\n  \u003Cul\u003E\n    \u003Cli class=\"unchanged\"\u003E\u003Cspan\u003Eopen\u003C/span\u003E\u003C/li\u003E\n  \u003C/ul\u003E\n\u003C/div\u003E\n"
+      },
+      "vrtScopeRules": []
+    },
+    "currentChangelogState": "Latest",
+    "previousChangelogState": null,
+    "previousVersionPublishedAt": "2024-09-05T13:21:23.729Z",
+    "previousVersionUrl": "/engagements/gearset-mbb/changelog/0c92372a-710e-4208-a281-18e5255a1a84",
+    "nextVersionUrl": null,
+    "publishedBy": "bugcrowd",
+    "engagementChangelogsUrl": "/engagements/gearset-mbb/changelog",
+    "engagementChangelogUrl": "/engagements/gearset-mbb/changelog/f487691d-c051-43c4-9597-756ffeccf01c",
+    "previousHidden": false,
+    "currentHidden": false
+  },
+  "createUserFeedbacksUrl": "/engagements/gearset-mbb/feedbacks",
+  "engagementCrowdstreamUrl": "/engagements/gearset-mbb/crowdstream",
+  "acceptedSubmissionsEnabled": true,
+  "disclosedReportsEnabled": true,
+  "engagementsUrl": "/engagements",
+  "engagementPaymentDetailUrl": null,
+  "shouldShowHideButton": true,
+  "engagementHiddenData": {
+    "engagementCode": "gearset-mbb",
+    "isHidden": false,
+    "isPrivate": false
+  },
+  "totalRewardPool": null,
+  "vrtScopeRules": null,
+  "vrtVersion": null
+}
