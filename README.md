@@ -62,11 +62,14 @@ bch list --discovered -p tesla # list auto-discovered subdomains
 
 bch queue                     # queue all scans
 bch queue -p tesla -t nuclei  # queue only nuclei for tesla
+bch queue -t nuclei --from-httpx -p tesla  # queue nuclei for targets that have httpx results
 bch queue --force             # re-queue already-done scans
 
 bch run                       # run pending scans
 bch run -w 10                 # 10 parallel workers
 bch run -t httpx              # only run httpx jobs
+bch run -t nuclei -T CVE-2025-3248.yaml          # run nuclei with one template (path or id)
+bch run -t nuclei -T ./templates/my-custom.yaml # run local template across queued targets
 
 bch watch                     # continuous mode: sync + scan forever
 bch watch --interval 7200     # re-sync every 2 hours
@@ -166,7 +169,7 @@ Notifications fire automatically during `bch run` and `bch watch` whenever a new
   "tools": {
     "subfinder": { "rate_limit": 50, "timeout": 300 },
     "amass":     { "timeout": 600 },
-    "dnsx":      { "rate_limit": 100, "timeout": 120 },
+    "dnsx":      { "rate_limit": 100, "timeout": 120, "resolver": "" },
     "httpx":     { "rate_limit": 50, "timeout": 300 },
     "gau":       { "timeout": 180 },
     "nuclei": {
@@ -216,3 +219,4 @@ Notifications fire automatically during `bch run` and `bch watch` whenever a new
 - Respect `rate_limit` settings, especially for nuclei
 - Keep `request_delay` at 1.0+ to be polite to Bugcrowd/HackerOne APIs
 - Some programs prohibit automated scanning -- `bch program set <code> --exclude` to skip them
+- On VPN (e.g. Mullvad), set `tools.dnsx.resolver` to your VPN DNS (e.g. `"10.64.0.1"`) so dnsx can resolve

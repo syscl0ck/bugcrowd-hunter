@@ -53,8 +53,8 @@ DEFAULT_CONFIG = {
     "tools": {
         "subfinder": {"rate_limit": 50, "timeout": 300},
         "amass":     {"timeout": 600},
-        "dnsx":      {"rate_limit": 100, "timeout": 120},
-        "httpx":     {"rate_limit": 50, "timeout": 300},
+        "dnsx":      {"rate_limit": 100, "timeout": 120, "resolver": ""},
+        "httpx":     {"rate_limit": 50, "timeout": 300, "resolver": ""},
         "gau":       {"timeout": 180},
         "nuclei": {
             "rate_limit": 25,
@@ -311,13 +311,53 @@ def program_set(ctx, code, platform, priority, exclude, include, notes):
 @click.option("--platform", "-P", default=None, help="Only queue for a specific platform")
 @click.option("--tool", "-t", multiple=True, help="Only queue specific tools (repeatable)")
 @click.option("--force", is_flag=True, help="Re-queue already-completed scans")
+@click.option("--from-httpx", is_flag=True,
+              help="Queue from targets that have a completed httpx scan (confirmed sites)")
 @click.pass_context
-def queue(ctx, program, platform, tool, force):
-    """Populate the scan queue for scope targets."""
+def queue(ctx, program, platform, tool, force, from_httpx):
+    """Populate the scan queue (scope targets, or from-httpx for confirmed sites)."""
     state: StateManager = ctx.obj["state"]
     tools = list(tool) or None
-    n = populate_scan_queue(state, tools=tools, program=program, platform=platform, force=force)
+    n = populate_scan_queue(
+        state, tools=tools, program=program, platform=platform,
+        force=force, from_httpx=from_httpx,
+    )
     console.print(f"[green]Queued {n} scan jobs.[/]")
+    _print_stats(state)
+
+
+@cli.command()
+@click.option("--program", "-p", default=None, help="Only clear for a specific program")
+@click.option("--platform", "-P", default=None, help="Only clear for a specific platform")
+@click.option("--tool", "-t", default=None, help="Only clear a specific tool")
+@click.option("--all", "clear_all", is_flag=True,
+              help="Clear all scans, including done/failed/running")
+@click.option("-y", "--yes", is_flag=True, help="Skip confirmation prompt")
+@click.pass_context
+def clear(ctx, program, platform, tool, clear_all, yes):
+    """Clear scans from the queue (does not affect done/failed/running unless --all)."""
+    state: StateManager = ctx.obj["state"]
+    count = state.count_scans_to_clear(tool=tool, program=program, platform=platform, all=clear_all)
+    if count == 0:
+        console.print("[dim]Nothing to clear.[/]")
+        return
+    scope = []
+    if program:
+        scope.append(f"program [cyan]{program}[/]")
+    if platform:
+        scope.append(f"platform [cyan]{platform}[/]")
+    if tool:
+        scope.append(f"tool [cyan]{tool}[/]")
+    scope_str = " (" + ", ".join(scope) + ")" if scope else ""
+    if clear_all:
+        console.print(f"[yellow]About to clear {count} scan(s){scope_str} (all statuses).[/]")
+    else:
+        console.print(f"[yellow]About to clear {count} pending scan(s){scope_str}.[/]")
+    if not yes and not click.confirm("Continue?", default=False):
+        console.print("[dim]Aborted.[/]")
+        return
+    n = state.clear_pending_scans(tool=tool, program=program, platform=platform, all=clear_all)
+    console.print(f"[green]Cleared {n} scan(s).[/]")
     _print_stats(state)
 
 
@@ -357,6 +397,7 @@ def run(ctx, workers, tool, max_jobs, nuclei_template):
         workers=workers or cfg.get("workers", 5),
         tool_delays=cfg.get("tool_delays", {}),
         nuclei_template=nuclei_template,
+        tool_filter=tool,
     )
     pool.run(max_jobs=max_jobs)
     _print_stats(state)

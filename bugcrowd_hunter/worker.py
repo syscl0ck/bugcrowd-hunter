@@ -42,6 +42,7 @@ class WorkerPool:
         tool_delays: dict = None,
         on_complete: Callable = None,
         nuclei_template: str = None,
+        tool_filter: str = None,
     ):
         self.state = state
         self.scanner = scanner
@@ -50,6 +51,7 @@ class WorkerPool:
         self.tool_delays = tool_delays or {}
         self.on_complete = on_complete
         self.nuclei_template = nuclei_template
+        self.tool_filter = tool_filter
         self._stop = threading.Event()
         # Guards mutation of _tool_locks dict itself (thread-safe lazy creation)
         self._tool_locks_lock = threading.Lock()
@@ -149,6 +151,11 @@ class WorkerPool:
             # Scope check
             if not (subdomain == parent_base_domain or
                     subdomain.endswith("." + parent_base_domain)):
+                logger.debug(f"Out of scope, skipping: {subdomain}")
+                continue
+            # Check if the subdomain is excluded from the program
+            out_of_scope_names = self.state.get_out_of_scope_target_names(program, platform)
+            if subdomain in out_of_scope_names:
                 logger.debug(f"Out of scope, skipping: {subdomain}")
                 continue
 
@@ -263,14 +270,18 @@ class WorkerPool:
                         time.sleep(0.5)
                         continue
 
-                    pending = self.state.get_pending_scans(limit=min(slots, batch_size))
+                    pending = self.state.get_pending_scans(
+                        tool=self.tool_filter, limit=min(slots, batch_size)
+                    )
 
                     if not pending:
                         if not futures:
                             # Queue might be getting populated by ingest callbacks --
                             # wait one poll cycle before declaring done
                             time.sleep(poll_interval)
-                            if not self.state.get_pending_scans(limit=1):
+                            if not self.state.get_pending_scans(
+                                tool=self.tool_filter, limit=1
+                            ):
                                 logger.info("Queue fully drained. Stopping.")
                                 break
                         else:
@@ -294,13 +305,20 @@ class WorkerPool:
 
 def populate_scan_queue(state: StateManager, tools: list[str] = None,
                         program: str = None, platform: str = None,
-                        force: bool = False) -> int:
+                        force: bool = False, from_httpx: bool = False) -> int:
     """
-    Populate the scan queue for scope targets.
-    Discovered subdomains are NOT queued here -- they auto-queue via the pipeline.
+    Populate the scan queue.
+    By default uses scope targets. With from_httpx=True, uses targets that have
+    a completed httpx scan (confirmed web sites) and queues the requested tools
+    (e.g. nuclei) for them.
     Returns number of jobs queued.
     """
-    targets = state.get_targets(program=program, platform=platform, source="scope", in_scope=True)
+    if from_httpx:
+        targets = state.get_targets_with_scan_done("httpx", program=program, platform=platform)
+        source_desc = "targets with httpx done"
+    else:
+        targets = state.get_targets(program=program, platform=platform, source="scope", in_scope=True)
+        source_desc = "scope targets"
     queued = 0
     for t in targets:
         is_wildcard = bool(t["is_wildcard"])
@@ -308,7 +326,8 @@ def populate_scan_queue(state: StateManager, tools: list[str] = None,
         if tools:
             applicable = [x for x in applicable if x in tools]
         for tool in applicable:
-            state.queue_scan(t["id"], tool, force=force)
-            queued += 1
-    logger.info(f"Queued {queued} scan jobs for {len(targets)} scope targets")
+            _sid, inserted = state.queue_scan(t["id"], tool, force=force)
+            if inserted:
+                queued += 1
+    logger.info(f"Queued {queued} scan jobs for {len(targets)} {source_desc}")
     return queued

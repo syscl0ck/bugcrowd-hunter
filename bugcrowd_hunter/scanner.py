@@ -117,24 +117,29 @@ def run_amass(target: str, output_file: Path, timeout: int = 600) -> list[str]:
     return _parse_amass_hosts(output_file)
 
 
-def run_dnsx(targets_file: Path, output_file: Path, rate_limit: int = 100,
-             timeout: int = 120) -> list[str]:
-    """Returns list of resolved (live) hostnames."""
+def run_dnsx(domain: str, output_file: Path, rate_limit: int = 100,
+             timeout: int = 120, resolver: str = None) -> list[str]:
+    """Returns list of resolved (live) hostnames. Feeds domain via stdin. resolver=e.g. 10.64.0.1 for VPN."""
     cmd = [
         "dnsx",
-        "-l", str(targets_file),
+        "-l", "-",
         "-o", str(output_file),
         "-json", "-silent",
         "-rate-limit", str(rate_limit),
         "-a", "-aaaa", "-cname", "-resp",
     ]
-    _run_cmd(cmd, timeout=timeout + 30, tool="dnsx")
-    return _parse_jsonl_field(output_file, "host")
+    if resolver and resolver.strip():
+        # dnsx -r accepts one or comma-separated resolvers
+        cmd.extend(["-r", resolver.strip()])
+    _run_cmd(cmd, timeout=timeout + 30, tool="dnsx", stdin_input=domain.strip() + "\n")
+    # dnsx JSON may use "host" or "hostname" depending on version
+    rows = _parse_jsonl(output_file)
+    return list({r.get("host") or r.get("hostname") or "" for r in rows if r.get("host") or r.get("hostname")})
 
 
 def run_httpx(targets_file: Path, output_file: Path, rate_limit: int = 50,
-              timeout: int = 300) -> list[dict]:
-    """Returns list of live HTTP result dicts."""
+              timeout: int = 300, resolver: str = None) -> list[dict]:
+    """Returns list of live HTTP result dicts. Use -l so httpx reads targets from file."""
     cmd = [
         "httpx",
         "-l", str(targets_file),
@@ -145,9 +150,10 @@ def run_httpx(targets_file: Path, output_file: Path, rate_limit: int = 50,
         "-follow-redirects",
         "-title", "-status-code", "-tech-detect",
         "-content-length", "-web-server",
-        "-screenshot",   # capture screenshots where possible
         "-favicon",
     ]
+    if resolver and resolver.strip():
+        cmd.extend(["-r", resolver.strip()])
     _run_cmd(cmd, timeout=timeout + 30, tool="httpx")
     return _parse_jsonl(output_file)
 
@@ -175,11 +181,19 @@ def run_nuclei(targets_file: Path, output_file: Path,
         severity = ["low", "medium", "high", "critical"]
     if templates is None:
         templates = ["cves", "exposures", "misconfiguration", "vulnerabilities"]
+    # Resolve file paths to absolute so nuclei finds local templates reliably
+    resolved_templates = []
+    for t in templates:
+        p = Path(t)
+        if (t.endswith(".yaml") or "/" in t or "\\" in t) and p.exists():
+            resolved_templates.append(str(p.resolve()))
+        else:
+            resolved_templates.append(t)  # category like "cves" or template id
     cmd = [
         "nuclei",
         "-l", str(targets_file),
         "-o", str(output_file),
-        "-json", "-silent",
+        "-silent",
         "-rate-limit", str(rate_limit),
         "-bulk-size", "10",
         "-concurrency", "10",
@@ -187,18 +201,32 @@ def run_nuclei(targets_file: Path, output_file: Path,
         "-severity", ",".join(severity),
         "-stats",
     ]
-    for t in templates:
+    for t in resolved_templates:
         cmd += ["-t", t]
     _run_cmd(cmd, timeout=timeout + 30, tool="nuclei")
     return _parse_jsonl(output_file)
 
 
-def _run_cmd(cmd: list[str], timeout: int, tool: str):
+def _run_cmd(cmd: list[str], timeout: int, tool: str, stdin_input: str = None):
     logger.debug(f"Running: {' '.join(cmd)}")
     try:
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            input=stdin_input,
+        )
         if result.returncode not in (0, 1):
-            raise ScanError(f"{tool} exited {result.returncode}: {result.stderr[:500]}")
+            err_parts = []
+            if result.stderr:
+                err_parts.append(result.stderr.strip())
+            if result.stdout and result.returncode != 0:
+                err_parts.append(result.stdout.strip())
+            err_msg = "\n".join(err_parts) if err_parts else "(no output)"
+            if len(err_msg) > 1500:
+                err_msg = err_msg[:1500] + "\n... (truncated)"
+            raise ScanError(f"{tool} exited {result.returncode}:\n{err_msg}")
     except subprocess.TimeoutExpired:
         raise ScanError(f"{tool} timed out after {timeout}s")
     except FileNotFoundError:
@@ -311,13 +339,21 @@ class Scanner:
                 extra = run_amass(base_domain, out, timeout=cfg.get("timeout", 600))
 
             elif tool == "dnsx":
-                inp.write_text(base_domain + "\n")
-                extra = run_dnsx(inp, out, rate_limit=rate_limit, timeout=timeout)
-                inp.unlink(missing_ok=True)
+                resolver = cfg.get("resolver") or None
+                extra = run_dnsx(
+                    base_domain, out,
+                    rate_limit=rate_limit, timeout=timeout,
+                    resolver=resolver,
+                )
 
             elif tool == "httpx":
                 inp.write_text(target_name + "\n")
-                extra = run_httpx(inp, out, rate_limit=rate_limit, timeout=timeout)
+                resolver = cfg.get("resolver") or None
+                extra = run_httpx(
+                    inp, out,
+                    rate_limit=rate_limit, timeout=timeout,
+                    resolver=resolver,
+                )
                 inp.unlink(missing_ok=True)
 
             elif tool == "gau":
