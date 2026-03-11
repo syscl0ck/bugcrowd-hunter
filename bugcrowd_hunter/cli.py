@@ -31,7 +31,7 @@ from rich.text import Text
 
 from .scraper import BugcrowdScraper, HackerOneScraper, Program
 from .state import StateManager
-from .scanner import Scanner, check_tools, TOOLS
+from .scanner import Scanner, check_tools, TOOLS, validate_nuclei_templates
 from .worker import WorkerPool, populate_scan_queue
 from .notifier import Notifier
 
@@ -59,7 +59,7 @@ DEFAULT_CONFIG = {
         "nuclei": {
             "rate_limit": 25,
             "timeout": 600,
-            "severity": ["low", "medium", "high", "critical"],
+            "severity": ["info", "low", "medium", "high", "critical"],
             "templates": ["cves", "exposures", "misconfiguration", "vulnerabilities"],
         },
     },
@@ -312,7 +312,7 @@ def program_set(ctx, code, platform, priority, exclude, include, notes):
 @click.option("--tool", "-t", multiple=True, help="Only queue specific tools (repeatable)")
 @click.option("--force", is_flag=True, help="Re-queue already-completed scans")
 @click.option("--from-httpx", is_flag=True,
-              help="Queue from targets that have a completed httpx scan (confirmed sites)")
+              help="Queue from targets with httpx done; only responsive hosts (with httpx results) are queued")
 @click.pass_context
 def queue(ctx, program, platform, tool, force, from_httpx):
     """Populate the scan queue (scope targets, or from-httpx for confirmed sites)."""
@@ -321,6 +321,7 @@ def queue(ctx, program, platform, tool, force, from_httpx):
     n = populate_scan_queue(
         state, tools=tools, program=program, platform=platform,
         force=force, from_httpx=from_httpx,
+        scanner=ctx.obj.get("scanner"),
     )
     console.print(f"[green]Queued {n} scan jobs.[/]")
     _print_stats(state)
@@ -388,6 +389,20 @@ def run(ctx, workers, tool, max_jobs, nuclei_template):
     if pending_count == 0:
         console.print("[yellow]No pending scans. Run [bold]bch queue[/] first.[/]")
         return
+
+    if tool == "nuclei":
+        nuclei_cfg = (cfg.get("tools", {}) or {}).get("nuclei", {}) or {}
+        templates = (
+            [nuclei_template] if nuclei_template
+            else nuclei_cfg.get("templates", ["cves", "exposures", "misconfiguration", "vulnerabilities"])
+        )
+        console.print("[dim]Validating nuclei templates...[/]")
+        valid, errors = validate_nuclei_templates(templates, timeout=120)
+        if not valid:
+            console.print("[red]Nuclei template validation failed. Halting.[/]")
+            for e in errors:
+                console.print(f"[dim]  {e}[/]")
+            raise click.Abort()
 
     console.print(f"[cyan]{pending_count} pending scans. Starting...[/]")
     pool = WorkerPool(

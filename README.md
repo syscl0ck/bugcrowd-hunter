@@ -1,4 +1,4 @@
-# Bugcrowd Hunter v2urce\repos\claude\bugcrowd-hunter>
+# Bugcrowd Hunter v2
 
 Automated recon and vulnerability scanning across **Bugcrowd and HackerOne** bug bounty programs.
 
@@ -62,14 +62,15 @@ bch list --discovered -p tesla # list auto-discovered subdomains
 
 bch queue                     # queue all scans
 bch queue -p tesla -t nuclei  # queue only nuclei for tesla
-bch queue -t nuclei --from-httpx -p tesla  # queue nuclei for targets that have httpx results
+bch queue -t nuclei --from-httpx -p tesla  # queue nuclei only for targets with httpx-confirmed responsive hosts
 bch queue --force             # re-queue already-done scans
 
 bch run                       # run pending scans
 bch run -w 10                 # 10 parallel workers
 bch run -t httpx              # only run httpx jobs
-bch run -t nuclei -T CVE-2025-3248.yaml          # run nuclei with one template (path or id)
-bch run -t nuclei -T ./templates/my-custom.yaml # run local template across queued targets
+bch run -t nuclei -T http/technologies/tech-detect.yaml  # run nuclei with one template (path or id)
+bch run -t nuclei -T ./templates/my-custom.yaml         # run local template across queued targets
+# Nuclei templates are validated before each run; invalid templates cause the run to halt.
 
 bch watch                     # continuous mode: sync + scan forever
 bch watch --interval 7200     # re-sync every 2 hours
@@ -114,8 +115,8 @@ Stage 3: httpx
   Output: Live HTTP endpoints with status codes, titles, tech stack
 
 Stage 4: nuclei
-  Input:  https://api.example.com
-  Output: Vulnerability findings (CVEs, misconfigs, exposures)
+  Input:  hostname (nuclei runs httpx internally, then runs templates)
+  Output: Vulnerability findings (CVEs, misconfigs, tech detection, etc.)
 ```
 
 You don't have to manage any of this manually. Run `bch queue` once for scope targets, and the rest fills in automatically as enumeration results come in.
@@ -175,7 +176,6 @@ Notifications fire automatically during `bch run` and `bch watch` whenever a new
     "nuclei": {
       "rate_limit": 25,
       "timeout": 600,
-      "severity": ["low", "medium", "high", "critical"],
       "templates": ["cves", "exposures", "misconfiguration", "vulnerabilities"]
     }
   },
@@ -200,13 +200,14 @@ Notifications fire automatically during `bch run` and `bch watch` whenever a new
   state.db              # programs, targets, scan queue, findings
   logs/
   results/
+    bugcrowd/
       <program>/
         subfinder/      # discovered subdomains
         amass/
         dnsx/           # DNS resolution results
         httpx/          # HTTP probe results
         gau/            # historical URLs
-        nuclei/         # vulnerability findings
+        nuclei/         # vulnerability findings (JSONL per target)
     hackerone/
       <program>/
         ...
@@ -219,4 +220,4 @@ Notifications fire automatically during `bch run` and `bch watch` whenever a new
 - Respect `rate_limit` settings, especially for nuclei
 - Keep `request_delay` at 1.0+ to be polite to Bugcrowd/HackerOne APIs
 - Some programs prohibit automated scanning -- `bch program set <code> --exclude` to skip them
-- On VPN (e.g. Mullvad), set `tools.dnsx.resolver` to your VPN DNS (e.g. `"10.64.0.1"`) so dnsx can resolve
+- On VPN (e.g. Mullvad), set `tools.dnsx.resolver` to your VPN DNS (e.g. `"10.64.0.1"`) so dnsx can resolve.

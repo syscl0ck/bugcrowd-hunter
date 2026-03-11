@@ -69,7 +69,7 @@ class WorkerPool:
         """Enforce per-tool minimum delay between consecutive jobs."""
         lock = self._get_tool_lock(tool)
         with lock:
-            delay = self.tool_delays.get(tool, 0.5)
+            delay = self.tool_delays.get(tool, 0.2)
             last = self._tool_last_run.get(tool, 0)
             elapsed = time.time() - last
             if elapsed < delay:
@@ -305,17 +305,36 @@ class WorkerPool:
 
 def populate_scan_queue(state: StateManager, tools: list[str] = None,
                         program: str = None, platform: str = None,
-                        force: bool = False, from_httpx: bool = False) -> int:
+                        force: bool = False, from_httpx: bool = False,
+                        scanner: Optional[Scanner] = None) -> int:
     """
     Populate the scan queue.
     By default uses scope targets. With from_httpx=True, uses targets that have
-    a completed httpx scan (confirmed web sites) and queues the requested tools
-    (e.g. nuclei) for them.
+    a completed httpx scan; if scanner is provided, only targets where httpx
+    actually got at least one result (responsive host) are queued.
     Returns number of jobs queued.
     """
     if from_httpx:
         targets = state.get_targets_with_scan_done("httpx", program=program, platform=platform)
-        source_desc = "targets with httpx done"
+        if scanner is not None:
+            # Only queue for targets where httpx found a response (result file has content)
+            responsive = []
+            for t in targets:
+                path = scanner.result_path(
+                    t["program"], "httpx", t["name"],
+                    platform=t["platform"],
+                )
+                if path.exists() and len(scanner.parse_results(path)) > 0:
+                    responsive.append(t)
+            if len(targets) != len(responsive):
+                logger.info(
+                    "from_httpx: %d/%d targets have httpx results (responsive); queuing only those",
+                    len(responsive), len(targets),
+                )
+            targets = responsive
+            source_desc = "targets with httpx-confirmed responsive hosts"
+        else:
+            source_desc = "targets with httpx done (pass scanner to queue only responsive hosts)"
     else:
         targets = state.get_targets(program=program, platform=platform, source="scope", in_scope=True)
         source_desc = "scope targets"
