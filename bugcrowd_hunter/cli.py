@@ -49,6 +49,11 @@ DEFAULT_CONFIG = {
         "min_severity": "low",
         "slack_webhook": "",
         "discord_webhook": "",
+        "scan_complete": {
+            "enabled": False,
+            "tools": ["nuclei"],
+            "notify_on_error": True,
+        },
     },
     "tools": {
         "subfinder": {"rate_limit": 50, "timeout": 300},
@@ -150,6 +155,7 @@ def sync(ctx, platform, program):
 
     total_programs = 0
     total_targets = 0
+    total_out_of_scope = 0
 
     with Progress(SpinnerColumn(), TextColumn("{task.description}"), console=console) as progress:
         task = progress.add_task("Syncing...", total=None)
@@ -405,6 +411,7 @@ def run(ctx, workers, tool, max_jobs, nuclei_template):
             raise click.Abort()
 
     console.print(f"[cyan]{pending_count} pending scans. Starting...[/]")
+    started = time.time()
     pool = WorkerPool(
         state=state,
         scanner=scanner,
@@ -416,6 +423,30 @@ def run(ctx, workers, tool, max_jobs, nuclei_template):
     )
     pool.run(max_jobs=max_jobs)
     _print_stats(state)
+
+    # Optional: single notification when bch run completes (e.g. nuclei batch done)
+    try:
+        stats = state.get_scan_stats() or {}
+        tool_key = tool if tool is not None else "nuclei"
+        tool_stats = stats.get(tool_key, {})
+        done = int(tool_stats.get("done", 0))
+        failed = int(tool_stats.get("failed", 0))
+        duration_s = time.time() - started
+
+        notifier.notify_scan_complete({
+            "tool": tool or "all",
+            "target_name": "(batch)",
+            "program": "(multiple)",
+            "platform": "(multiple)",
+            "ok": True,
+            "error": None,
+            "results_count": done,
+            "duration_s": duration_s,
+            "result_path": f"{done} done, {failed} failed",
+        })
+    except Exception:
+        # Never let notifications break CLI runs
+        pass
 
 
 # ---------------------------------------------------------------------------

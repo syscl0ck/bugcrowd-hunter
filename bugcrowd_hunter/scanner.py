@@ -142,7 +142,7 @@ def run_httpx(targets_file: Path, output_file: Path, rate_limit: int = 50,
               timeout: int = 300, resolver: str = None) -> list[dict]:
     """Returns list of live HTTP result dicts. Use -l so httpx reads targets from file."""
     cmd = [
-        "httpx",
+        "/root/go/bin/httpx",
         "-l", str(targets_file),
         "-o", str(output_file),
         "-json", "-silent",
@@ -264,7 +264,7 @@ def run_nuclei(targets_file: Path, output_file: Path,
     if findings:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         output_path.write_text("\n".join(json.dumps(f) for f in findings) + "\n", encoding="utf-8")
-    logger.info("nuclei output: from_stdout=%d", len(findings))
+    #logger.info("nuclei output: from_stdout=%d", len(findings))
     return findings
 
 

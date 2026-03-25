@@ -32,6 +32,7 @@ class Notifier:
         self.threshold = self.config.get("min_severity", "low")
         self.slack_url = self.config.get("slack_webhook")
         self.discord_url = self.config.get("discord_webhook")
+        self.scan_complete_cfg = self.config.get("scan_complete", {}) or {}
         self.log_dir = log_dir
         self.log_dir.mkdir(parents=True, exist_ok=True)
 
@@ -60,6 +61,38 @@ class Notifier:
 
         return len(eligible)
 
+    def notify_scan_complete(self, event: dict) -> bool:
+        """
+        Notify when a scan completes (e.g. nuclei run finished).
+
+        event keys (expected):
+          - tool, target_name, program, platform
+          - ok (bool), error (str|None)
+          - results_count (int), duration_s (float), result_path (str|None)
+        """
+        tool = (event.get("tool") or "").strip().lower()
+        enabled = bool(self.scan_complete_cfg.get("enabled", False))
+        tools = [t.lower() for t in (self.scan_complete_cfg.get("tools") or ["nuclei"])]
+        notify_on_error = bool(self.scan_complete_cfg.get("notify_on_error", True))
+
+        ok = bool(event.get("ok", False))
+        if not enabled:
+            return False
+        if tools and tool and tool not in tools:
+            return False
+        if (not ok) and not notify_on_error:
+            return False
+
+        # Always write to log file once enabled
+        self._log_scan_complete(event)
+
+        if self.slack_url:
+            self._send_slack_scan_complete(event)
+        if self.discord_url:
+            self._send_discord_scan_complete(event)
+
+        return True
+
     def _log_findings(self, findings: list):
         log_file = self.log_dir / "findings.log"
         with log_file.open("a") as f:
@@ -71,6 +104,26 @@ class Notifier:
                     f"{finding['name']} @ {finding['target']}\n"
                 )
                 f.write(line)
+
+    def _log_scan_complete(self, event: dict):
+        log_file = self.log_dir / "scans.log"
+        ok = bool(event.get("ok", False))
+        status = "OK" if ok else "FAIL"
+        duration_s = float(event.get("duration_s") or 0.0)
+        results_count = int(event.get("results_count") or 0)
+        result_path = event.get("result_path") or ""
+        tool = event.get("tool") or "unknown"
+        target_name = event.get("target_name") or "unknown"
+        program = event.get("program") or "unknown"
+        platform = event.get("platform") or "unknown"
+        err = (event.get("error") or "").replace("\n", " ").strip()
+        err_part = f" err={err}" if (not ok and err) else ""
+        with log_file.open("a") as f:
+            f.write(
+                f"[{datetime.utcnow().isoformat()}] [{status}] "
+                f"[{tool}] [{program} / {platform}] {target_name} "
+                f"results={results_count} duration_s={duration_s:.2f} path={result_path}{err_part}\n"
+            )
 
     def _send_slack(self, findings: list):
         severity_emoji = {
@@ -109,6 +162,39 @@ class Notifier:
         except Exception as e:
             logger.warning(f"Slack notification failed: {e}")
 
+    def _send_slack_scan_complete(self, event: dict):
+        ok = bool(event.get("ok", False))
+        status_emoji = ":white_check_mark:" if ok else ":x:"
+        tool = event.get("tool") or "unknown"
+        target_name = event.get("target_name") or "unknown"
+        program = event.get("program") or "unknown"
+        platform = event.get("platform") or "unknown"
+        duration_s = float(event.get("duration_s") or 0.0)
+        results_count = int(event.get("results_count") or 0)
+        result_path = event.get("result_path") or ""
+        error = (event.get("error") or "").strip()
+
+        lines = [
+            f"{status_emoji} *{tool} scan complete*",
+            f"Program: `{program}` ({platform})",
+            f"Target: `{target_name}`",
+            f"Duration: `{duration_s:.2f}s`",
+            f"Results: `{results_count}`",
+        ]
+        if result_path:
+            lines.append(f"Output: `{result_path}`")
+        if (not ok) and error:
+            trimmed = error if len(error) <= 500 else (error[:500] + "…")
+            lines.append(f"*Error*: `{trimmed}`")
+
+        payload = {"text": "\n".join(lines)}
+        try:
+            r = requests.post(self.slack_url, json=payload, timeout=10)
+            r.raise_for_status()
+            logger.info("Slack notification sent for scan completion")
+        except Exception as e:
+            logger.warning(f"Slack scan-complete notification failed: {e}")
+
     def _send_discord(self, findings: list):
         severity_color = {
             "critical": 0xFF0000,
@@ -141,3 +227,43 @@ class Notifier:
             logger.info(f"Discord notification sent for {len(findings)} findings")
         except Exception as e:
             logger.warning(f"Discord notification failed: {e}")
+
+    def _send_discord_scan_complete(self, event: dict):
+        ok = bool(event.get("ok", False))
+        color = 0x2ECC71 if ok else 0xE74C3C
+        tool = event.get("tool") or "unknown"
+        target_name = event.get("target_name") or "unknown"
+        program = event.get("program") or "unknown"
+        platform = event.get("platform") or "unknown"
+        duration_s = float(event.get("duration_s") or 0.0)
+        results_count = int(event.get("results_count") or 0)
+        result_path = event.get("result_path") or ""
+        error = (event.get("error") or "").strip()
+
+        fields = [
+            {"name": "Program", "value": f"{program} ({platform})", "inline": True},
+            {"name": "Target", "value": f"`{target_name}`", "inline": False},
+            {"name": "Duration", "value": f"`{duration_s:.2f}s`", "inline": True},
+            {"name": "Results", "value": f"`{results_count}`", "inline": True},
+        ]
+        if result_path:
+            fields.append({"name": "Output", "value": f"`{result_path}`", "inline": False})
+        if (not ok) and error:
+            trimmed = error if len(error) <= 900 else (error[:900] + "…")
+            fields.append({"name": "Error", "value": f"`{trimmed}`", "inline": False})
+
+        payload = {
+            "content": f"**{tool} scan complete** ({'OK' if ok else 'FAILED'})",
+            "embeds": [{
+                "title": f"{tool} scan complete",
+                "color": color,
+                "fields": fields,
+                "timestamp": datetime.utcnow().isoformat(),
+            }],
+        }
+        try:
+            r = requests.post(self.discord_url, json=payload, timeout=10)
+            r.raise_for_status()
+            logger.info("Discord notification sent for scan completion")
+        except Exception as e:
+            logger.warning(f"Discord scan-complete notification failed: {e}")
