@@ -15,6 +15,7 @@ import threading
 import time
 from concurrent.futures import ThreadPoolExecutor
 from typing import Callable, Optional
+from urllib.parse import urlparse
 
 from .state import StateManager
 from .scanner import Scanner, get_applicable_tools, fingerprint_nuclei, fingerprint_httpx
@@ -303,6 +304,71 @@ class WorkerPool:
         self._stop.set()
 
 
+def _filter_responsive_httpx_targets(
+    targets: list[dict], scanner: Scanner, *, log: bool = True,
+) -> list[dict]:
+    """Keep only targets whose httpx result file exists and has at least one JSON line."""
+    responsive = []
+    for t in targets:
+        path = scanner.result_path(
+            t["program"], "httpx", t["name"],
+            platform=t["platform"],
+        )
+        if path.exists() and len(scanner.parse_results(path)) > 0:
+            responsive.append(t)
+    if log and len(targets) != len(responsive):
+        logger.info(
+            "from_httpx: %d/%d targets have httpx results (responsive); queuing only those",
+            len(responsive), len(targets),
+        )
+    return responsive
+
+
+def _line_from_httpx_row(row: dict, hostnames_only: bool) -> Optional[str]:
+    url = (row.get("url") or "").strip()
+    if not url:
+        return None
+    if not hostnames_only:
+        return url
+    netloc = urlparse(url).netloc
+    # Strip userinfo (https://user@host/ -> user@host in netloc in some parsers)
+    if "@" in netloc:
+        netloc = netloc.split("@", 1)[-1]
+    return netloc or None
+
+
+def collect_httpx_urls(
+    state: StateManager,
+    scanner: Scanner,
+    program: str | None = None,
+    platform: str | None = None,
+    hostnames_only: bool = False,
+    *,
+    log_filter: bool = True,
+) -> list[str]:
+    """
+    Collect URLs (or host:port) from httpx JSONL results for the same target set as
+    ``queue --from-httpx`` when a scanner is available (responsive hosts only).
+    Returned lines are unique and sorted.
+    """
+    targets = state.get_targets_with_scan_done("httpx", program=program, platform=platform)
+    targets = _filter_responsive_httpx_targets(targets, scanner, log=log_filter)
+    seen: set[str] = set()
+    lines: list[str] = []
+    for t in targets:
+        path = scanner.result_path(
+            t["program"], "httpx", t["name"],
+            platform=t["platform"],
+        )
+        for row in scanner.parse_results(path):
+            line = _line_from_httpx_row(row, hostnames_only)
+            if line and line not in seen:
+                seen.add(line)
+                lines.append(line)
+    lines.sort()
+    return lines
+
+
 def populate_scan_queue(state: StateManager, tools: list[str] = None,
                         program: str = None, platform: str = None,
                         force: bool = False, from_httpx: bool = False,
@@ -317,21 +383,7 @@ def populate_scan_queue(state: StateManager, tools: list[str] = None,
     if from_httpx:
         targets = state.get_targets_with_scan_done("httpx", program=program, platform=platform)
         if scanner is not None:
-            # Only queue for targets where httpx found a response (result file has content)
-            responsive = []
-            for t in targets:
-                path = scanner.result_path(
-                    t["program"], "httpx", t["name"],
-                    platform=t["platform"],
-                )
-                if path.exists() and len(scanner.parse_results(path)) > 0:
-                    responsive.append(t)
-            if len(targets) != len(responsive):
-                logger.info(
-                    "from_httpx: %d/%d targets have httpx results (responsive); queuing only those",
-                    len(responsive), len(targets),
-                )
-            targets = responsive
+            targets = _filter_responsive_httpx_targets(targets, scanner)
             source_desc = "targets with httpx-confirmed responsive hosts"
         else:
             source_desc = "targets with httpx done (pass scanner to queue only responsive hosts)"

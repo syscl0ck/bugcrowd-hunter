@@ -32,7 +32,7 @@ from rich.text import Text
 from .scraper import BugcrowdScraper, HackerOneScraper, Program
 from .state import StateManager
 from .scanner import Scanner, check_tools, TOOLS, validate_nuclei_templates
-from .worker import WorkerPool, populate_scan_queue
+from .worker import WorkerPool, populate_scan_queue, collect_httpx_urls
 from .notifier import Notifier
 
 console = Console()
@@ -331,6 +331,28 @@ def queue(ctx, program, platform, tool, force, from_httpx):
     )
     console.print(f"[green]Queued {n} scan jobs.[/]")
     _print_stats(state)
+
+
+@cli.command("httpx-urls")
+@click.option("--program", "-p", default=None, help="Only include httpx results for a specific program")
+@click.option("--platform", "-P", default=None, help="Only include results for a specific platform")
+@click.option("--hostnames", "-n", "hostnames_only", is_flag=True,
+              help="Print host:port (from each URL) instead of full URLs")
+@click.option("--quiet", "-q", is_flag=True, help="No stderr log line about responsive target counts")
+@click.pass_context
+def httpx_urls_cmd(ctx, program, platform, hostnames_only, quiet):
+    """Print httpx URLs to stdout (same responsive target set as queue --from-httpx).
+
+    One line per unique URL from stored httpx JSONL; pipe to a file or other tools.
+    """
+    state: StateManager = ctx.obj["state"]
+    scanner: Scanner = ctx.obj["scanner"]
+    lines = collect_httpx_urls(
+        state, scanner, program=program, platform=platform, hostnames_only=hostnames_only,
+        log_filter=not quiet,
+    )
+    for line in lines:
+        click.echo(line)
 
 
 @cli.command()
